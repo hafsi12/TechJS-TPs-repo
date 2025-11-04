@@ -1,0 +1,222 @@
+:root{
+  --bg: #f6f8fb;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --accent: #2563eb; /* bleu */
+  --accent-2: #10b981; /* vert pour add */
+  --danger: #ef4444;
+  --glass: rgba(255,255,255,0.6);
+  --shadow: 0 6px 18px rgba(18,38,63,0.08);
+  --radius: 12px;
+  --max-width: 760px;
+}
+
+/* Reset léger */
+*{box-sizing: border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  min-height:100%;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg,#fbfdff 0%, #f0f4ff 100%);
+  color:#0f172a;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:40px 20px;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* Conteneur principal */
+.app-shell{
+  width:100%;
+  max-width:var(--max-width);
+  background:var(--card);
+  border-radius:18px;
+  padding:28px;
+  box-shadow:var(--shadow);
+  border:1px solid rgba(16,24,40,0.04);
+}
+
+/* Header / titre */
+.app-header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:18px;
+}
+.app-header p{
+  margin:0;
+  font-size:20px;
+  font-weight:700;
+  letter-spacing: -0.2px;
+}
+.app-sub{
+  margin-left:auto;
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* Input grid */
+.todo-input-grid{
+  display:grid;
+  grid-template-columns: 1fr 220px 110px;
+  gap:12px;
+  align-items:center;
+  margin-bottom:18px;
+}
+@media (max-width:640px){
+  .todo-input-grid{grid-template-columns: 1fr; }
+}
+
+.name-input,
+.due-date-input{
+  width:100%;
+  padding:10px 12px;
+  font-size:15px;
+  border-radius:10px;
+  border:1px solid rgba(15,23,42,0.06);
+  background:linear-gradient(180deg, #fff, #fbfdff);
+  outline:none;
+  transition:box-shadow .15s, transform .06s, border-color .12s;
+  box-shadow:0 1px 0 rgba(0,0,0,0.02) inset;
+}
+.name-input:focus,
+.due-date-input:focus{
+  border-color: rgba(37,99,235,0.22);
+  box-shadow:0 6px 18px rgba(37,99,235,0.08);
+  transform:translateY(-1px);
+}
+
+/* Boutons */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:10px 14px;
+  font-weight:600;
+  font-size:14px;
+  border-radius:10px;
+  cursor:pointer;
+  border:none;
+  transition: transform .08s ease, box-shadow .12s;
+  user-select:none;
+}
+.add-todo-button{
+  background: linear-gradient(180deg,var(--accent), #1e40af);
+  color:white;
+  box-shadow: 0 8px 20px rgba(37,99,235,0.16);
+}
+.add-todo-button:hover{ transform:translateY(-3px); }
+.add-todo-button:active{ transform:translateY(-1px); }
+
+.delete-todo-button,
+.js-delete-todo-button{
+  background: transparent;
+  color:var(--danger);
+  border:1px solid rgba(239,68,68,0.12);
+  padding:8px 10px;
+  border-radius:8px;
+  font-weight:600;
+}
+.delete-todo-button:hover,
+.js-delete-todo-button:hover{
+  background: rgba(239,68,68,0.06);
+}
+
+/* Liste to-dos */
+.todo-grid{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+/* Card élément to-do */
+.todo-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px 16px;
+  border-radius:12px;
+  background:linear-gradient(180deg, rgba(16,24,40,0.01), rgba(16,24,40,0.01));
+  border:1px solid rgba(15,23,42,0.04);
+  box-shadow:0 2px 8px rgba(2,6,23,0.03);
+  transition: transform .08s ease, box-shadow .12s;
+}
+.todo-item:hover{
+  transform: translateY(-4px);
+  box-shadow:0 12px 30px rgba(2,6,23,0.06);
+}
+
+/* Left content */
+.todo-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+}
+.todo-title{
+  font-weight:600;
+  font-size:15px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  max-width:420px;
+}
+
+/* date */
+.todo-meta{
+  font-size:13px;
+  color:var(--muted);
+  margin-left:6px;
+}
+
+/* actions */
+.todo-actions{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+/* petite étiquette si la date est passée - JS ne gère pas mais on laisse classe */
+.late{
+  color: #b91c1c;
+  font-weight:700;
+}
+
+/* empty state */
+.empty{
+  text-align:center;
+  padding:28px;
+  color:var(--muted);
+  border-radius:10px;
+  background: linear-gradient(180deg, rgba(16,24,40,0.01), rgba(16,24,40,0.005));
+  border:1px dashed rgba(15,23,42,0.03);
+}
+
+/* petites améliorations pour accessibilité */
+input,button{
+  font-family:inherit;
+}
+button:focus, input:focus{
+  outline: none;
+  box-shadow:0 6px 18px rgba(37,99,235,0.08);
+}
+
+/* utilitaires */
+.small{
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* si tu veux des icônes inline (optionnel) */
+.icon{
+  display:inline-flex;
+  width:18px;
+  height:18px;
+  align-items:center;
+  justify-content:center;
+}
