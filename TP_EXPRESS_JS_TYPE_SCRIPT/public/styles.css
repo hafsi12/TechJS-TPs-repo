@@ -1,0 +1,15 @@
+/* Additional custom styles if needed */
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Smooth transitions for interactive elements */
+button, a {
+  transition: all 0.3s ease;
+}
+
+/* Custom focus styles */
+input:focus, button:focus {
+  outline: none;
+  ring: 2px;
+}
