@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Reading Tracker</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">Book Reading Tracker</h1>
+
+    <!-- Formulaire d'ajout de livre -->
+    <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+        <h2 class="text-xl font-semibold mb-4">Ajouter un nouveau livre</h2>
+        <form id="bookForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Titre *</label>
+                <input type="text" id="title" name="title" required
+                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Auteur *</label>
+                <input type="text" id="author" name="author" required
+                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Nombre de pages *</label>
+                <input type="number" id="totalPages" name="totalPages" required min="1"
+                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Statut</label>
+                <select id="status" name="status" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="Want to read">Want to read</option>
+                    <option value="Currently reading">Currently reading</option>
+                    <option value="Read">Read</option>
+                    <option value="Re-read">Re-read</option>
+                    <option value="DNF">DNF</option>
+                    <option value="Returned Unread">Returned Unread</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Prix (€)</label>
+                <input type="number" id="price" name="price" step="0.01" min="0"
+                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Pages lues</label>
+                <input type="number" id="pagesRead" name="pagesRead" min="0"
+                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Format</label>
+                <select id="format" name="format" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="Print">Print</option>
+                    <option value="PDF">PDF</option>
+                    <option value="Ebook">Ebook</option>
+                    <option value="AudioBook">AudioBook</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Suggéré par</label>
+                <input type="text" id="suggestedBy" name="suggestedBy"
+                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <div class="md:col-span-2 lg:col-span-3">
+                <button type="submit"
+                        class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200">
+                    Ajouter le livre
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Statistiques globales -->
+    <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+        <h2 class="text-xl font-semibold mb-4">Statistiques de lecture</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="statsContainer">
+            <div class="bg-blue-50 p-4 rounded-lg text-center">
+                <div class="text-2xl font-bold text-blue-600">0</div>
+                <div class="text-blue-800">Livres total</div>
+            </div>
+            <div class="bg-green-50 p-4 rounded-lg text-center">
+                <div class="text-2xl font-bold text-green-600">0</div>
+                <div class="text-green-800">Livres terminés</div>
+            </div>
+            <div class="bg-purple-50 p-4 rounded-lg text-center">
+                <div class="text-2xl font-bold text-purple-600">0</div>
+                <div class="text-purple-800">Pages lues</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Liste des livres -->
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-xl font-semibold mb-4">Mes livres</h2>
+        <div id="booksContainer" class="space-y-4">
+            <p class="text-gray-500 text-center">Aucun livre enregistré</p>
+        </div>
+    </div>
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>
